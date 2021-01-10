@@ -3,7 +3,15 @@ package br.com.andre.exercicio2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HappyNumberChecker {
+import lombok.Getter;
+
+public class HappyNumberVerifier {
+    private @Getter int numberToBeVerified;
+
+	public HappyNumberVerifier(int n) {
+        numberToBeVerified = n;
+	}
+
 	public int getSquare(int n) {
         return n * n;
 	}
