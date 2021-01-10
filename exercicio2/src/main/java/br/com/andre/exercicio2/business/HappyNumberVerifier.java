@@ -6,12 +6,11 @@ import java.util.List;
 public class HappyNumberVerifier {
 	private int number;
 	private List<Integer> digits;
-	private boolean repeated;
 	private List<Step> steps;
 
 	public Result verify(int n) throws IllegalArgumentException {
 		initialize(n);
-		boolean isHappy = calculate(n);
+		boolean isHappy = calculate();
 		return new Result(isHappy, steps);
 	}
 
@@ -21,25 +20,27 @@ public class HappyNumberVerifier {
 
 		digits = new ArrayList<Integer>();
 		steps = new ArrayList<Step>();
-		repeated = false;
 		number = n;
 	}
 
-	private boolean calculate(int n) {
+	private boolean calculate() {
 		if (number == 1) {
 			return true;
-		} else if (repeated || n == 0) {
+		} else if (numberIsRepeated() || number == 0) {
 			return false;
 		} else {
 			step();
-			return calculate(number);
+			return calculate();
 		}
+	}
+
+	private boolean numberIsRepeated() {
+		return steps.stream().filter(step -> step.getResult() == number).count() > 1;
 	}
 
 	private void step() {
 		extractDigits();
 		sumSquares();
-		repeated |= currentStepIsRepeated();
 		steps.add(new Step(digits, number));
 	}
 
@@ -57,9 +58,5 @@ public class HappyNumberVerifier {
 		}).reduce((previous, sum) -> {
 			return previous + sum;
 		}).orElse(0);
-	}
-
-	private boolean currentStepIsRepeated() {
-		return steps.stream().filter(step -> step.getResult() == number).count() >= 1;
 	}
 }
