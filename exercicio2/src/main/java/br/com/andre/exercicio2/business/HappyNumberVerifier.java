@@ -7,21 +7,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class HappyNumberVerifier {
-	private int number;
-	private Deque<Integer> digits;
+	private long number;
+	private Deque<Long> digits;
 	private List<Step> steps;
 
-	public Result verify(int n) throws IllegalArgumentException {
+	public Result verify(long n) throws IllegalArgumentException {
 		initialize(n);
 		boolean isHappy = calculate();
 		return new Result(n, isHappy, steps);
 	}
 
-	private void initialize(int n) {
+	private void initialize(long n) {
 		if (n < 0)
 			throw new IllegalArgumentException("Happy numbers must be positive integers");
 
-		digits = new LinkedList<Integer>();
+		digits = new LinkedList<Long>();
 		steps = new ArrayList<Step>();
 		number = n;
 	}
@@ -44,7 +44,7 @@ public class HappyNumberVerifier {
 	private void step() {
 		extractDigits();
 		sumSquares();
-		List<Integer> copyDigits = digits.stream().collect(Collectors.toList());
+		List<Long> copyDigits = digits.stream().collect(Collectors.toList());
 		steps.add(new Step(copyDigits, number));
 	}
 
@@ -61,6 +61,6 @@ public class HappyNumberVerifier {
 			return n * n;
 		}).reduce((previous, sum) -> {
 			return previous + sum;
-		}).orElse(0);
+		}).orElse(0l);
 	}
 }

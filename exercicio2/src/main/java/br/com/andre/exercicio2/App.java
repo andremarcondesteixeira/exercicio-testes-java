@@ -1,5 +1,6 @@
 package br.com.andre.exercicio2;
 
+import br.com.andre.exercicio2.business.HappyNumberVerifier;
 import br.com.andre.exercicio2.presentation.Presentation;
 
 public final class App {
@@ -10,7 +11,6 @@ public final class App {
     }
 
     public void start() {
-        presentation.loop();
+        presentation.start(new HappyNumberVerifier());
     }
-
 }

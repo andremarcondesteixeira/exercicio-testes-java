@@ -6,10 +6,10 @@ import lombok.Getter;
 
 @Getter
 public class Step {
-    private List<Integer> digits;
-    private int result;
+    private List<Long> digits;
+    private long result;
 
-    public Step(List<Integer> digits, int result) {
+    public Step(List<Long> digits, long result) {
         this.digits = digits;
         this.result = result;
     }
