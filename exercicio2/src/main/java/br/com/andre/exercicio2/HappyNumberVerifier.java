@@ -6,10 +6,11 @@ import java.util.List;
 import lombok.Getter;
 
 public class HappyNumberVerifier {
-	private @Getter int numberToBeVerified;
+	private @Getter int number;
+	private @Getter List<Integer> digits;
 
 	public HappyNumberVerifier(int n) {
-		numberToBeVerified = n;
+		number = n;
 	}
 
 	public int getSquare(int n) {
@@ -22,7 +23,6 @@ public class HappyNumberVerifier {
 			digits.add(n % 10);
 			n /= 10;
 		}
-		;
 		return digits;
 	}
 
