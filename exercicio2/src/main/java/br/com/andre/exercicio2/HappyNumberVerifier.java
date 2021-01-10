@@ -8,7 +8,7 @@ import lombok.Getter;
 public class HappyNumberVerifier {
 	private @Getter int number;
 	private @Getter List<Integer> digits;
-	private @Getter List<Integer> previousResults;
+	private @Getter List<Step> steps;
 	private @Getter boolean repeated;
 
 	public HappyNumberVerifier(int n) throws IllegalArgumentException {
@@ -17,7 +17,7 @@ public class HappyNumberVerifier {
 
 		number = n;
 		digits = new ArrayList<Integer>();
-		previousResults = new ArrayList<Integer>();
+		steps = new ArrayList<Step>();
 		repeated = false;
 	}
 
@@ -38,8 +38,12 @@ public class HappyNumberVerifier {
 	public void step() {
 		extractDigits();
 		sumSquares();
-		repeated |= previousResults.contains(number);
-		previousResults.add(number);
+		repeated |= currentStepIsRepeated();
+		steps.add(new Step(digits, number));
+	}
+
+	public boolean currentStepIsRepeated() {
+		return steps.stream().filter(step -> step.getResult() == number).count() >= 1;
 	}
 
 	public void extractDigits() {

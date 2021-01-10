@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class Exercicio2Tests {
+class HappyNumberVerifier_Tests {
 	private HappyNumberVerifier verifier;
 
 	@BeforeEach
@@ -52,8 +52,14 @@ class Exercicio2Tests {
 	@Test
 	public void Calculation_Step_Saves_Results() {
 		verifier.step();
-		assertEquals(1, verifier.getPreviousResults().size());
-		assertTrue(verifier.getPreviousResults().contains(10));
+		List<Step> steps = verifier.getSteps();
+		Step previous = steps.get(0);
+		assertEquals(1, steps.size());
+		assertEquals(3, previous.getDigits().size());
+		assertEquals(0, previous.getDigits().get(0));
+		assertEquals(3, previous.getDigits().get(1));
+		assertEquals(1, previous.getDigits().get(2));
+		assertEquals(10, previous.getResult());
 	}
 
 	@Test
@@ -67,13 +73,13 @@ class Exercicio2Tests {
 	public void Watch_For_Repeated_Number() {
 		var verifier = new HappyNumberVerifier(4);
 		verifier.step();
-		assertTrue(verifier.getPreviousResults().contains(16));
+		assertEquals(16, verifier.getNumber());
 
 		for (var i = 0; i < 8; i++)
 			verifier.step();
 
 		assertEquals(16, verifier.getNumber()); // repeated number = not happy number
-		assertTrue(verifier.isRepeated());
+		assertTrue(verifier.currentStepIsRepeated());
 	}
 
 	@Test
