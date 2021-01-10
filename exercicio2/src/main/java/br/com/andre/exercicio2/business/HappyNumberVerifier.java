@@ -1,4 +1,4 @@
-package br.com.andre.exercicio2;
+package br.com.andre.exercicio2.business;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,42 +11,40 @@ public class HappyNumberVerifier {
 	private @Getter List<Step> steps;
 	private @Getter boolean repeated;
 
-	public HappyNumberVerifier(int n) throws IllegalArgumentException {
+	public boolean verify(int n) throws IllegalArgumentException {
+		initialize(n);
+		return calculate(n);
+	}
+
+	private void initialize(int n) {
 		if (n < 0)
 			throw new IllegalArgumentException("Happy numbers must be positive integers");
 
-		number = n;
 		digits = new ArrayList<Integer>();
 		steps = new ArrayList<Step>();
 		repeated = false;
+		number = n;
 	}
 
-	public boolean verify() {
+	private boolean calculate(int n) {
 		if (number == 1) {
 			return true;
-		} else if(repeated) {
+		} else if (repeated || n == 0) {
 			return false;
 		} else {
 			step();
-			return verify();
+			return calculate(number);
 		}
 	}
 
-	// não deixei os métodos abaixo privados somente para mostrar que usei TDD
-	// assim, não precisei excluir as etapas do tdd nos testes
-
-	public void step() {
+	private void step() {
 		extractDigits();
 		sumSquares();
 		repeated |= currentStepIsRepeated();
 		steps.add(new Step(digits, number));
 	}
 
-	public boolean currentStepIsRepeated() {
-		return steps.stream().filter(step -> step.getResult() == number).count() >= 1;
-	}
-
-	public void extractDigits() {
+	private void extractDigits() {
 		digits.clear();
 		while (number >= 1) {
 			digits.add(number % 10);
@@ -54,11 +52,15 @@ public class HappyNumberVerifier {
 		}
 	}
 
-	public void sumSquares() {
+	private void sumSquares() {
 		number = digits.stream().map(n -> {
 			return n * n;
 		}).reduce((previous, sum) -> {
 			return previous + sum;
 		}).orElse(0);
+	}
+
+	private boolean currentStepIsRepeated() {
+		return steps.stream().filter(step -> step.getResult() == number).count() >= 1;
 	}
 }

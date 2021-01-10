@@ -1,6 +1,6 @@
 package br.com.andre.exercicio1;
 
-public class Exercicio1 {
+public final class Exercicio1 {
 	public static void main(String[] args) {
 		int soma1 = new Multiples().ofAny(new int[] { 3, 5 }).until(999).sum();
 		System.out.println("A soma de todos os múltiplos de 3 ou 5 abaixo de 1000 é " + soma1);

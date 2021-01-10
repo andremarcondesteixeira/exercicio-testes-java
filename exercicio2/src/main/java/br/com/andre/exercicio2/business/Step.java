@@ -1,4 +1,4 @@
-package br.com.andre.exercicio2;
+package br.com.andre.exercicio2.business;
 
 import java.util.List;
 
