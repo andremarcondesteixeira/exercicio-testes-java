@@ -8,10 +8,27 @@ import lombok.Getter;
 public class HappyNumberVerifier {
 	private @Getter int number;
 	private @Getter List<Integer> digits;
+	private @Getter List<Integer> previousResults;
 
 	public HappyNumberVerifier(int n) {
 		number = n;
 		digits = new ArrayList<Integer>();
+		previousResults = new ArrayList<Integer>();
+	}
+
+	public boolean verify() {
+		if (number == 1)
+			return true;
+		else {
+			step();
+			return verify();
+		}
+	}
+
+	public void step() {
+		extractDigits();
+		sumSquares();
+		previousResults.add(number);
 	}
 
 	public void extractDigits() {

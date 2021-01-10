@@ -41,17 +41,32 @@ class Exercicio2Tests {
 
 	@Test
 	public void Calculation_Step() {
-		verifier.extractDigits();
-		verifier.sumSquares();
+		verifier.step();
 		assertEquals(10, verifier.getNumber());
-		verifier.extractDigits();
-		verifier.sumSquares();
+		verifier.step();
 		assertEquals(1, verifier.getNumber());
+	}
+
+	@Test
+	public void Calculation_Step_Saves_Results() {
+		verifier.step();
+		assertEquals(1, verifier.getPreviousResults().size());
+		assertTrue(verifier.getPreviousResults().contains(10));
+	}
+
+	@Test
+	public void Happy_Path() {
+		var verifier = new HappyNumberVerifier(7);
+		boolean isHappy = verifier.verify();
+		assertTrue(isHappy);
 	}
 
 	@Test
 	@Disabled
 	public void Watch_For_Repeated_Number() {
+		var verifier = new HappyNumberVerifier(4);
+		for (var i = 0; i < 8; i ++)
+			verifier.step();
 		
 	}
 }
