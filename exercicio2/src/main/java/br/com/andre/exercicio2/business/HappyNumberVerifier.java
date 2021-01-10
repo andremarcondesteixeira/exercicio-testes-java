@@ -6,10 +6,10 @@ import java.util.List;
 import lombok.Getter;
 
 public class HappyNumberVerifier {
-	private @Getter int number;
-	private @Getter List<Integer> digits;
+	private int number;
+	private List<Integer> digits;
+	private boolean repeated;
 	private @Getter List<Step> steps;
-	private @Getter boolean repeated;
 
 	public boolean verify(int n) throws IllegalArgumentException {
 		initialize(n);
