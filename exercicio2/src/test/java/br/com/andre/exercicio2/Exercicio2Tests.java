@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class Exercicio2Tests {
@@ -35,10 +36,21 @@ class Exercicio2Tests {
 	public void Sum_Squares_Of_Digits() {
 		verifier.extractDigits();
 		verifier.sumSquares();
-		assertEquals(10, verifier.getSumOfSquares());
+		assertEquals(10, verifier.getNumber());
 	}
 
 	@Test
+	public void Calculation_Step() {
+		verifier.extractDigits();
+		verifier.sumSquares();
+		assertEquals(10, verifier.getNumber());
+		verifier.extractDigits();
+		verifier.sumSquares();
+		assertEquals(1, verifier.getNumber());
+	}
+
+	@Test
+	@Disabled
 	public void Watch_For_Repeated_Number() {
 		
 	}

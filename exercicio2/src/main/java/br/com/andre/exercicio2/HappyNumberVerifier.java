@@ -8,7 +8,6 @@ import lombok.Getter;
 public class HappyNumberVerifier {
 	private @Getter int number;
 	private @Getter List<Integer> digits;
-	private @Getter int sumOfSquares;
 
 	public HappyNumberVerifier(int n) {
 		number = n;
@@ -16,6 +15,7 @@ public class HappyNumberVerifier {
 	}
 
 	public void extractDigits() {
+		digits.clear();
 		while (number >= 1) {
 			digits.add(number % 10);
 			number /= 10;
@@ -23,7 +23,7 @@ public class HappyNumberVerifier {
 	}
 
 	public void sumSquares() {
-		sumOfSquares = digits.stream().map(n -> {
+		number = digits.stream().map(n -> {
 			return n * n;
 		}).reduce((previous, sum) -> {
 			return previous + sum;
