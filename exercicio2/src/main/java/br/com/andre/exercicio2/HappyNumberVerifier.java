@@ -7,22 +7,23 @@ import lombok.Getter;
 
 public class HappyNumberVerifier {
 	private @Getter int number;
+	private @Getter List<Integer> digits;
+	private @Getter int sumOfSquares;
 
 	public HappyNumberVerifier(int n) {
 		number = n;
+		digits = new ArrayList<Integer>();
 	}
 
-	public List<Integer> digitsOf(int n) {
-		var digits = new ArrayList<Integer>();
-		while (n >= 1) {
-			digits.add(n % 10);
-			n /= 10;
+	public void extractDigits() {
+		while (number >= 1) {
+			digits.add(number % 10);
+			number /= 10;
 		}
-		return digits;
 	}
 
-	public int sumSquaresOf(ArrayList<Integer> list) {
-		return list.stream().map(n -> {
+	public void sumSquares() {
+		sumOfSquares = digits.stream().map(n -> {
 			return n * n;
 		}).reduce((previous, sum) -> {
 			return previous + sum;
