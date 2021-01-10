@@ -33,6 +33,7 @@ public class HappyNumberVerifier {
 	}
 
 	// não deixei os métodos abaixo privados somente para mostrar que usei TDD
+	// assim, não precisei excluir as etapas do tdd nos testes
 
 	public void step() {
 		extractDigits();
