@@ -7,13 +7,12 @@ import lombok.Getter;
 
 public class HappyNumberVerifier {
 	private @Getter int number;
-	private @Getter List<Integer> digits;
 
 	public HappyNumberVerifier(int n) {
 		number = n;
 	}
 
-	public List<Integer> digitsOf(int n) {
+	public List<Integer> digits(int n) {
 		var digits = new ArrayList<Integer>();
 		while (n >= 1) {
 			digits.add(n % 10);
@@ -22,7 +21,7 @@ public class HappyNumberVerifier {
 		return digits;
 	}
 
-	public int sumSquaresOf(ArrayList<Integer> list) {
+	public int sumOfSquares(ArrayList<Integer> list) {
 		return list.stream().map(n -> {
 			return n * n;
 		}).reduce((previous, sum) -> {
