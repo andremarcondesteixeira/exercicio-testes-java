@@ -24,12 +24,6 @@ class Exercicio2Tests {
 	}
 
 	@Test
-	public void Get_Square_Of_Number() {
-		int square = verifier.getSquare(2);
-		assertEquals(4, square);
-	}
-
-	@Test
 	public void Get_Digits_Of_Number() {
 		List<Integer> digits = verifier.digitsOf(175);
 		assertEquals(3, digits.size());

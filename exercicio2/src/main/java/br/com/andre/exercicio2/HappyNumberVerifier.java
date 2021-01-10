@@ -13,10 +13,6 @@ public class HappyNumberVerifier {
 		number = n;
 	}
 
-	public int getSquare(int n) {
-		return n * n;
-	}
-
 	public List<Integer> digitsOf(int n) {
 		var digits = new ArrayList<Integer>();
 		while (n >= 1) {
@@ -28,7 +24,7 @@ public class HappyNumberVerifier {
 
 	public int sumSquaresOf(ArrayList<Integer> list) {
 		return list.stream().map(n -> {
-			return getSquare(n);
+			return n * n;
 		}).reduce((previous, sum) -> {
 			return previous + sum;
 		}).orElse(0);
