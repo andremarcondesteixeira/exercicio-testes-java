@@ -1,12 +1,14 @@
 package br.com.andre.exercicio2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.spy;
 
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class Exercicio2Tests {
@@ -14,7 +16,7 @@ class Exercicio2Tests {
 
 	@BeforeEach
 	public void setUp() {
-		verifier = new HappyNumberVerifier(130);
+		verifier = spy(new HappyNumberVerifier(130));
 	}
 
 	@Test
@@ -62,11 +64,37 @@ class Exercicio2Tests {
 	}
 
 	@Test
-	@Disabled
 	public void Watch_For_Repeated_Number() {
 		var verifier = new HappyNumberVerifier(4);
-		for (var i = 0; i < 8; i ++)
+		verifier.step();
+		assertTrue(verifier.getPreviousResults().contains(16));
+
+		for (var i = 0; i < 8; i++)
 			verifier.step();
-		
+
+		assertEquals(16, verifier.getNumber()); // repeated number = not happy number
+		assertTrue(verifier.isRepeated());
+	}
+
+	@Test
+	public void Sad_Path() {
+		var verifier = new HappyNumberVerifier(4);
+		boolean isHappy = verifier.verify();
+		assertFalse(isHappy);
+	}
+
+	@Test
+	public void Negative_Parameter_Throws_Exception() {
+		Exception e = assertThrows(IllegalArgumentException.class, () -> {
+			new HappyNumberVerifier(-7);
+		});
+		assertEquals("Happy numbers must be positive integers", e.getMessage());
+	}
+
+	@Test
+	public void Zero_Is_Not_A_Happy_Number() {
+		var verifier = new HappyNumberVerifier(0);
+		boolean isHappy = verifier.verify();
+		assertFalse(isHappy);
 	}
 }

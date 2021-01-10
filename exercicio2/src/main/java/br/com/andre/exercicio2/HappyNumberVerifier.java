@@ -9,17 +9,24 @@ public class HappyNumberVerifier {
 	private @Getter int number;
 	private @Getter List<Integer> digits;
 	private @Getter List<Integer> previousResults;
+	private @Getter boolean repeated;
 
-	public HappyNumberVerifier(int n) {
+	public HappyNumberVerifier(int n) throws IllegalArgumentException {
+		if (n < 0)
+			throw new IllegalArgumentException("Happy numbers must be positive integers");
+
 		number = n;
 		digits = new ArrayList<Integer>();
 		previousResults = new ArrayList<Integer>();
+		repeated = false;
 	}
 
 	public boolean verify() {
-		if (number == 1)
+		if (number == 1) {
 			return true;
-		else {
+		} else if(repeated) {
+			return false;
+		} else {
 			step();
 			return verify();
 		}
@@ -28,6 +35,7 @@ public class HappyNumberVerifier {
 	public void step() {
 		extractDigits();
 		sumSquares();
+		repeated |= previousResults.contains(number);
 		previousResults.add(number);
 	}
 
