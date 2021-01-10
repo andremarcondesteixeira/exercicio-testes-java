@@ -25,7 +25,7 @@ class Exercicio2Tests {
 
 	@Test
 	public void Get_Digits_Of_Number() {
-		List<Integer> digits = verifier.digits(175);
+		List<Integer> digits = verifier.digitsOf(175);
 		assertEquals(3, digits.size());
 		assertTrue(digits.contains(1));
 		assertTrue(digits.contains(7));
@@ -34,7 +34,7 @@ class Exercicio2Tests {
 
 	@Test
 	public void Sum_Squares_Of_A_List() {
-		int sum = verifier.sumOfSquares(new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5)));
+		int sum = verifier.sumSquares(new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5)));
 		assertEquals(55, sum);
 	}
 
