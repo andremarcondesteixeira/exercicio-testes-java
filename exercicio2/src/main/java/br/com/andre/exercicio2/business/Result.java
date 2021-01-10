@@ -11,5 +11,5 @@ public class Result {
 	public Result(boolean isHappy, List<Step> steps) {
         this.isHappy = isHappy;
         this.steps = steps;
-	}
+    }
 }
