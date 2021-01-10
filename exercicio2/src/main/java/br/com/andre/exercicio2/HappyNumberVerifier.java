@@ -32,6 +32,8 @@ public class HappyNumberVerifier {
 		}
 	}
 
+	// não deixei os métodos abaixo privados somente para mostrar que usei TDD
+
 	public void step() {
 		extractDigits();
 		sumSquares();
