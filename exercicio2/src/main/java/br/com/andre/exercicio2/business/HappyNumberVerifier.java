@@ -1,11 +1,14 @@
 package br.com.andre.exercicio2.business;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HappyNumberVerifier {
 	private int number;
-	private List<Integer> digits;
+	private Deque<Integer> digits;
 	private List<Step> steps;
 
 	public Result verify(int n) throws IllegalArgumentException {
@@ -18,7 +21,7 @@ public class HappyNumberVerifier {
 		if (n < 0)
 			throw new IllegalArgumentException("Happy numbers must be positive integers");
 
-		digits = new ArrayList<Integer>();
+		digits = new LinkedList<Integer>();
 		steps = new ArrayList<Step>();
 		number = n;
 	}
@@ -41,13 +44,14 @@ public class HappyNumberVerifier {
 	private void step() {
 		extractDigits();
 		sumSquares();
-		steps.add(new Step(digits, number));
+		List<Integer> copyDigits = digits.stream().collect(Collectors.toList());
+		steps.add(new Step(copyDigits, number));
 	}
 
 	private void extractDigits() {
 		digits.clear();
 		while (number >= 1) {
-			digits.add(number % 10);
+			digits.addFirst(number % 10);
 			number /= 10;
 		}
 	}
