@@ -6,47 +6,27 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.andre.exercicio2.business.HappyNumberVerifier;
 import br.com.andre.exercicio2.business.Result;
 import br.com.andre.exercicio2.business.Step;
 
 public class ConsolePresentation implements Presentation {
     private String input = "";
-    private HappyNumberVerifier verifier;
     private BufferedReader reader;
 
-    @Override
-    public void start(HappyNumberVerifier v) {
-        verifier = v;
+    public ConsolePresentation() {
         reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Bem vindo ao verificador de números felizes!!! :D");
-        loop();
     }
 
-    private void loop() {
-        while (true)
-            handleExceptions();
-    }
-
-    private void handleExceptions() {
-        try {
-            verifyNumber();
-        } catch (NumberFormatException e) {
-            System.out.println(input + " é muito grande ou não é um número.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void verifyNumber() throws IOException, NumberFormatException {
-        System.out.println("Digite um número:");
+    @Override
+    public long getInput() throws IOException, NumberFormatException {
+        System.out.println("\nDigite um número:");
         input = reader.readLine();
-        long number = Long.parseLong(input);
-        Result result = verifier.verify(number);
-        showResult(result);
+        return Long.parseLong(input);
     }
 
-    private void showResult(Result result) {
+    @Override
+    public void output(Result result) {
         showBriefing(result);
         result.getSteps().forEach(step -> {
             String calculation = getCalculation(step);
@@ -71,5 +51,15 @@ public class ConsolePresentation implements Presentation {
         return step.getDigits().stream().map(digit -> {
             return digit + " * " + digit;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public void output(String string) {
+        System.out.println(string);
+    }
+
+    @Override
+    public void output(Exception e) {
+        e.printStackTrace();
     }
 }

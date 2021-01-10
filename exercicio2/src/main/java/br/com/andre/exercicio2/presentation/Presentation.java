@@ -1,7 +1,15 @@
 package br.com.andre.exercicio2.presentation;
 
-import br.com.andre.exercicio2.business.HappyNumberVerifier;
+import java.io.IOException;
+
+import br.com.andre.exercicio2.business.Result;
 
 public interface Presentation {
-	public void start(HappyNumberVerifier verifier);
+	public long getInput() throws IOException, NumberFormatException;
+
+	public void output(String string);
+
+	public void output(Exception e);
+
+	public void output(Result result);
 }
