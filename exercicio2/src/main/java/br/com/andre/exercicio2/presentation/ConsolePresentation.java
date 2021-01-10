@@ -49,7 +49,7 @@ public class ConsolePresentation implements Presentation {
 
     private List<String> getPowers(Step step) {
         return step.getDigits().stream().map(digit -> {
-            return digit + " * " + digit;
+            return digit + "²";
         }).collect(Collectors.toList());
     }
 
