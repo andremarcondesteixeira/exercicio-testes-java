@@ -39,9 +39,9 @@ class Exercicio2Tests {
 	}
 
 	@Test
-	public void Sum_Numbers_Of_A_List() {
-		int sum = happyNumber.sum(new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5)));
-		assertEquals(15, sum);
+	public void Sum_Squares_Of_A_List() {
+		int sum = happyNumber.sumSquaresOf(new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5)));
+		assertEquals(55, sum);
 	}
 
 	@Test
