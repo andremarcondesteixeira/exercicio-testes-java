@@ -33,6 +33,7 @@ class HappyNumberVerifier_Tests {
 
 		Result result = verifier.verify(aHappyNumber);
 
+		assertEquals(aHappyNumber, result.getNumber());
 		assertTrue(result.isHappy());
 		assertEquals(5, result.getSteps().size());
 		assertResultSteps(result, expectedResults, expectedDigits);
@@ -65,6 +66,8 @@ class HappyNumberVerifier_Tests {
 		};
 
 		Result result = verifier.verify(4);
+
+		assertEquals(4, result.getNumber());
 		assertFalse(result.isHappy());
 		assertResultSteps(result, expectedResults, expectedDigits);
 	}

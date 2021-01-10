@@ -14,7 +14,7 @@ public class HappyNumberVerifier {
 	public Result verify(int n) throws IllegalArgumentException {
 		initialize(n);
 		boolean isHappy = calculate();
-		return new Result(isHappy, steps);
+		return new Result(n, isHappy, steps);
 	}
 
 	private void initialize(int n) {
