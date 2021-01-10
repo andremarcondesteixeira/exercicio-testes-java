@@ -3,17 +3,16 @@ package br.com.andre.exercicio2.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Getter;
-
 public class HappyNumberVerifier {
 	private int number;
 	private List<Integer> digits;
 	private boolean repeated;
-	private @Getter List<Step> steps;
+	private List<Step> steps;
 
-	public boolean verify(int n) throws IllegalArgumentException {
+	public Result verify(int n) throws IllegalArgumentException {
 		initialize(n);
-		return calculate(n);
+		boolean isHappy = calculate(n);
+		return new Result(isHappy, steps);
 	}
 
 	private void initialize(int n) {

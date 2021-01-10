@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.spy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,19 +14,31 @@ class HappyNumberVerifier_Tests {
 
 	@BeforeEach
 	public void setUp() {
-		verifier = spy(new HappyNumberVerifier());
+		verifier = new HappyNumberVerifier();
 	}
 
 	@Test
 	public void Happy_Path() {
-		boolean isHappy = verifier.verify(aHappyNumber);
-		assertTrue(isHappy);
+		Result result = verifier.verify(aHappyNumber);
+		assertTrue(result.isHappy());
 	}
 
 	@Test
 	public void Sad_Path() {
-		boolean isHappy = verifier.verify(4);
-		assertFalse(isHappy);
+		Result result = verifier.verify(4);
+		assertFalse(result.isHappy());
+	}
+
+	@Test
+	public void Zero_Is_Not_A_Happy_Number() {
+		Result result = verifier.verify(0);
+		assertFalse(result.isHappy());
+	}
+
+	@Test
+	public void One_Is_A_Happy_Number() {
+		Result result = verifier.verify(1);
+		assertTrue(result.isHappy());
 	}
 
 	@Test
@@ -36,11 +47,5 @@ class HappyNumberVerifier_Tests {
 			verifier.verify(-7);
 		});
 		assertEquals("Happy numbers must be positive integers", e.getMessage());
-	}
-
-	@Test
-	public void Zero_Is_Not_A_Happy_Number() {
-		boolean isHappy = verifier.verify(0);
-		assertFalse(isHappy);
 	}
 }
