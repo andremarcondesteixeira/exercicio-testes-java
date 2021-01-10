@@ -21,7 +21,7 @@ public class HappyNumberVerifier {
 		return digits;
 	}
 
-	public int sumSquares(ArrayList<Integer> list) {
+	public int sumSquaresOf(ArrayList<Integer> list) {
 		return list.stream().map(n -> {
 			return n * n;
 		}).reduce((previous, sum) -> {

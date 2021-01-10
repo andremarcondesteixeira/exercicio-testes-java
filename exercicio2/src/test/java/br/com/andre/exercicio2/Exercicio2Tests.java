@@ -34,7 +34,7 @@ class Exercicio2Tests {
 
 	@Test
 	public void Sum_Squares_Of_A_List() {
-		int sum = verifier.sumSquares(new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5)));
+		int sum = verifier.sumSquaresOf(new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5)));
 		assertEquals(55, sum);
 	}
 
