@@ -14,7 +14,7 @@ public class PaymentService {
     }
 
     private boolean freightIsFree(Money productsPrice) {
-        return productsPrice.getValue() > 100;
+        return productsPrice.getValue() >= 100;
     }
 
     private Money getFreightPrice(ShoppingCart shoppingCart) {
