@@ -2,12 +2,12 @@ package br.com.andre.exercicio1;
 
 class FakeMultiplesCalculationResult implements OfRelationshipCalculationResult {
     @Override
-    public int[] get() {
+    public long[] get() {
         return null;
     }
 
     @Override
-    public int sum() {
+    public long sum() {
         return 0;
     }
 }

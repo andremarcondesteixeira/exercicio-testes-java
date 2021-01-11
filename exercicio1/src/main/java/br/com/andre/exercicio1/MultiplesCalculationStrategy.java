@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Set;
 
 public interface MultiplesCalculationStrategy {
-    boolean isMultiple(int number, Set<Integer> baseOperands);
+    boolean isMultiple(long number, Set<Long> baseOperands);
 
-    default List<Integer> calculateMultiples(int until, Set<Integer> baseOperands) {
-        var multiples = new ArrayList<Integer>();
-        int number;
+    default List<Long> calculateMultiples(long until, Set<Long> baseOperands) {
+        var multiples = new ArrayList<Long>();
+        long number;
 
         if (until > 0) {
             for (number = 1; number <= until; number++)

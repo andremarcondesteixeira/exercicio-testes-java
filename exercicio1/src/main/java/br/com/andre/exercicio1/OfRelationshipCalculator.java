@@ -1,9 +1,11 @@
 package br.com.andre.exercicio1;
 
 public interface OfRelationshipCalculator {
-    OfRelationshipCalculationResult until(int limit);
+    OfRelationshipCalculationResult until(long limit);
 
-    int[] getBaseOperands();
+    long[] getBaseOperands();
 
     MultiplesCalculationStrategy getCalculationStrategy();
+
+	boolean isMultiple(long value);
 }

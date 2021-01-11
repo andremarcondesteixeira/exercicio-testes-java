@@ -1,7 +1,7 @@
 package br.com.andre.exercicio1;
 
 public interface OfRelationshipCalculationResult {
-    int[] get();
+    long[] get();
 
-    int sum();
+    long sum();
 }

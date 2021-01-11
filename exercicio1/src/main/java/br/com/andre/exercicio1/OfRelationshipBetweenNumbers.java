@@ -3,9 +3,9 @@ package br.com.andre.exercicio1;
 import java.util.Set;
 
 public interface OfRelationshipBetweenNumbers {
-    OfRelationshipCalculator of(int operand);
+    OfRelationshipCalculator of(long operand);
 
-    OfRelationshipCalculator ofAll(Set<Integer> baseOperands);
+    OfRelationshipCalculator ofAll(Set<Long> baseOperands);
 
-    OfRelationshipCalculator ofAny(Set<Integer> operands);
+    OfRelationshipCalculator ofAny(Set<Long> operands);
 }

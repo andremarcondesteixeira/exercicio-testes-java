@@ -8,12 +8,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class MultiplesCalculator implements OfRelationshipCalculator {
-    private final Set<Integer> baseOperands;
-    private List<Integer> multiples = new ArrayList<Integer>();
+    private final Set<Long> baseOperands;
+    private List<Long> multiples = new ArrayList<Long>();
     private @Getter @Setter MultiplesCalculationStrategy calculationStrategy;
 
     public MultiplesCalculator( //
-            Set<Integer> baseOperands, //
+            Set<Long> baseOperands, //
             MultiplesCalculationStrategy calculationStrategy //
     ) throws IllegalArgumentException {
         checkParameters(baseOperands, calculationStrategy);
@@ -22,25 +22,30 @@ public class MultiplesCalculator implements OfRelationshipCalculator {
     }
 
     private void checkParameters( //
-            Set<Integer> operands, //
+            Set<Long> operands, //
             MultiplesCalculationStrategy strategy //
     ) throws IllegalArgumentException {
         if (operands == null || operands.size() == 0)
             throw new IllegalArgumentException("At least 1 operand must be provided");
 
-        if (operands.contains(0))
+        if (operands.contains(0l))
             throw new IllegalArgumentException("Zero is not allowed as operand");
 
         if (strategy == null)
             throw new IllegalArgumentException("No calculation strategy provided");
     }
 
-    public OfRelationshipCalculationResult until(int limit) {
+    public OfRelationshipCalculationResult until(long limit) {
         multiples = calculationStrategy.calculateMultiples(limit, baseOperands);
         return new MultiplesCalculationResult(multiples);
     }
 
-    public int[] getBaseOperands() {
-        return baseOperands.stream().mapToInt(x -> x).toArray();
+    public long[] getBaseOperands() {
+        return baseOperands.stream().mapToLong(x -> x).toArray();
+    }
+
+    @Override
+    public boolean isMultiple(long value) {
+        return calculationStrategy.isMultiple(value, baseOperands);
     }
 }

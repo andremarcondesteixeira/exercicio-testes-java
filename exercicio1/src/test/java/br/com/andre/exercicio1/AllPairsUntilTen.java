@@ -6,18 +6,18 @@ import java.util.Set;
 
 class AllPairsUntilTen implements MultiplesCalculationStrategy {
     @Override
-    public List<Integer> calculateMultiples(int until, Set<Integer> baseOperands) {
-        var result = new ArrayList<Integer>();
-        result.add(2);
-        result.add(4);
-        result.add(6);
-        result.add(8);
-        result.add(10);
+    public List<Long> calculateMultiples(long until, Set<Long> baseOperands) {
+        var result = new ArrayList<Long>();
+        result.add(2l);
+        result.add(4l);
+        result.add(6l);
+        result.add(8l);
+        result.add(10l);
         return result;
     }
 
     @Override
-    public boolean isMultiple(int n, Set<Integer> baseOperands) {
+    public boolean isMultiple(long n, Set<Long> baseOperands) {
         return n % 2 == 0;
     }
 }

@@ -7,11 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class Multiples_Tests {
-    private int[] baseOperands;
+    private long[] baseOperands;
 
     @BeforeEach
     void setUp() {
-        baseOperands = new int[] { 1 };
+        baseOperands = new long[] { 1 };
     }
 
     @Test

@@ -16,12 +16,12 @@ import org.junit.jupiter.api.Test;
 
 class MultiplesCalculator_Tests {
     private MultiplesCalculator multiplesCalculator;
-    private Set<Integer> baseOperands;
+    private Set<Long> baseOperands;
     private MultiplesCalculationStrategy calculationStrategy;
 
     @BeforeEach
     void setUp() {
-        baseOperands = new HashSet<Integer>(Arrays.asList(2));
+        baseOperands = new HashSet<Long>(Arrays.asList(2l));
         calculationStrategy = spy(new AllPairsUntilTen());
         multiplesCalculator = new MultiplesCalculator(baseOperands, calculationStrategy);
     }
@@ -35,7 +35,7 @@ class MultiplesCalculator_Tests {
 
     @Test
     void Calling_getBaseOperands_Returns_An_Array() {
-        assertArrayEquals(new int[] { 2 }, multiplesCalculator.getBaseOperands());
+        assertArrayEquals(new long[] { 2 }, multiplesCalculator.getBaseOperands());
     }
 
     @Test
@@ -49,7 +49,7 @@ class MultiplesCalculator_Tests {
     @Test
     void Instancing_MultiplesCalculator_Without_Operands_Throws_Exception() {
         Exception e1 = assertThrows(IllegalArgumentException.class, () -> {
-            new MultiplesCalculator(new HashSet<Integer>(), calculationStrategy);
+            new MultiplesCalculator(new HashSet<Long>(), calculationStrategy);
         });
 
         Exception e2 = assertThrows(IllegalArgumentException.class, () -> {
@@ -69,12 +69,12 @@ class MultiplesCalculator_Tests {
     @Test
     void Passing_Zero_As_Operand_Throws_Exception() {
         Exception e1 = assertThrows(IllegalArgumentException.class, () -> {
-            var baseOperands = new HashSet<Integer>(Arrays.asList(0));
+            var baseOperands = new HashSet<Long>(Arrays.asList(0l));
             new MultiplesCalculator(baseOperands, calculationStrategy);
         });
 
         Exception e2 = assertThrows(IllegalArgumentException.class, () -> {
-            var baseOperands = new HashSet<Integer>(Arrays.asList(7, 5, 0, 9));
+            var baseOperands = new HashSet<Long>(Arrays.asList(7l, 5l, 0l, 9l));
             new MultiplesCalculator(baseOperands, calculationStrategy);
         });
 

@@ -8,12 +8,24 @@
 		<version>1.0</version>
 	</parent>
 
+	<artifactId>exercicio3</artifactId>
+	<name>Exercício 3</name>
+	<packaging>jar</packaging>
+
 	<properties>
 		<main>br.com.andre.exercicio3.Exercicio3</main>
 	</properties>
 
-	<groupId>br.com.andre</groupId>
-	<artifactId>exercicio3</artifactId>
-	<version>1.0</version>
-	<name>Exercício 3</name>
+	<dependencies>
+		<dependency>
+			<groupId>br.com.andre</groupId>
+			<artifactId>exercicio1</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.andre</groupId>
+			<artifactId>exercicio2</artifactId>
+			<version>1.0</version>
+		</dependency>
+	</dependencies>
 </project>

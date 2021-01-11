@@ -3,19 +3,19 @@ package br.com.andre.exercicio1;
 import java.util.List;
 
 public class MultiplesCalculationResult implements OfRelationshipCalculationResult {
-    private List<Integer> multiples;
+    private List<Long> multiples;
 
-    public MultiplesCalculationResult(List<Integer> multiples) {
+    public MultiplesCalculationResult(List<Long> multiples) {
         this.multiples = multiples;
 	}
 
 	@Override
-    public int[] get() {
-        return multiples.stream().mapToInt(x -> x).toArray();
+    public long[] get() {
+        return multiples.stream().mapToLong(x -> x).toArray();
     }
 
     @Override
-    public int sum() {
+    public long sum() {
         return multiples.stream().reduce((prev, total) -> prev + total).get();
     }
 }
