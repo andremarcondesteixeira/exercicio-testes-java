@@ -31,6 +31,10 @@ public class ShoppingCart {
         products.remove(product);
     }
 
+    public void changeAmount(int amount, Product product) {
+        products.put(product, amount);
+	}
+
     public int amountOf(Product product) {
         return Optional.ofNullable(products.get(product)).orElse(0);
     }
