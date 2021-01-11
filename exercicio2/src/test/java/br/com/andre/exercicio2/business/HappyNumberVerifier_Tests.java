@@ -14,13 +14,11 @@ class HappyNumberVerifier_Tests {
 	private HappyNumberVerifier verifier;
 	private final int aHappyNumber = 7;
 
-	@BeforeEach
-	void setUp() {
+	@BeforeEach void setUp() {
 		verifier = new HappyNumberVerifier();
 	}
 
-	@Test
-	void Happy_Path() {
+	@Test void Happy_Path() {
 		var expectedResults = new int[] { 49, 97, 130, 10, 1 };
 		var expectedDigits = new int[][] { //
 				new int[] { 7 }, //
@@ -50,8 +48,7 @@ class HappyNumberVerifier_Tests {
 		}
 	}
 
-	@Test
-	void Sad_Path() {
+	@Test void Sad_Path() {
 		var expectedResults = new int[] { 16, 37, 58, 89, 145, 42, 20, 4 };
 		var expectedDigits = new int[][] { //
 				new int[] { 4 }, //
@@ -72,20 +69,17 @@ class HappyNumberVerifier_Tests {
 		assertResultSteps(result, expectedResults, expectedDigits);
 	}
 
-	@Test
-	void Zero_Is_Not_A_Happy_Number() {
+	@Test void Zero_Is_Not_A_Happy_Number() {
 		Result result = verifier.verify(0);
 		assertFalse(result.isHappy());
 	}
 
-	@Test
-	void One_Is_A_Happy_Number() {
+	@Test void One_Is_A_Happy_Number() {
 		Result result = verifier.verify(1);
 		assertTrue(result.isHappy());
 	}
 
-	@Test
-	void Negative_Parameter_Throws_Exception() {
+	@Test void Negative_Parameter_Throws_Exception() {
 		Exception e = assertThrows(IllegalArgumentException.class, () -> {
 			verifier.verify(-7);
 		});

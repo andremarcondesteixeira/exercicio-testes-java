@@ -20,41 +20,35 @@ class MultiplesCalculator_Tests {
     private Set<Long> baseOperands;
     private MultiplesCalculationStrategy calculationStrategy;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeEach void setUp() {
         baseOperands = new HashSet<Long>(Arrays.asList(2l));
         calculationStrategy = spy(new AllPairsUntilTen());
         multiplesCalculator = new MultiplesCalculator(baseOperands, calculationStrategy);
     }
 
-    @Test
-    void until_Returns_A_Calculation_Result_Object() {
+    @Test void until_Returns_A_Calculation_Result_Object() {
         OfRelationshipCalculationResult multiples = multiplesCalculator.until(10);
         assertTrue(multiples instanceof MultiplesCalculationResult);
         verify(calculationStrategy).calculateMultiples(10, baseOperands);
     }
 
-    @Test
-    void Calling_getBaseOperands_Returns_An_Array() {
+    @Test void Calling_getBaseOperands_Returns_An_Array() {
         assertArrayEquals(new long[] { 2 }, multiplesCalculator.getBaseOperands());
     }
 
-    @Test
-    void isMultiple_Checks_If_Number_Is_Multiple_Of_Operands() {
+    @Test void isMultiple_Checks_If_Number_Is_Multiple_Of_Operands() {
         assertTrue(multiplesCalculator.isMultiple(50));
         verify(calculationStrategy, times(1)).isMultiple(50, baseOperands);
     }
 
-    @Test
-    void When_CalculationStrategy_Is_Null_Throws_Exception() {
+    @Test void When_CalculationStrategy_Is_Null_Throws_Exception() {
         Exception e = assertThrows(IllegalArgumentException.class, () -> {
             new MultiplesCalculator(baseOperands, null);
         });
         assertEquals("No calculation strategy provided", e.getMessage());
     }
 
-    @Test
-    void Instancing_MultiplesCalculator_Without_Operands_Throws_Exception() {
+    @Test void Instancing_MultiplesCalculator_Without_Operands_Throws_Exception() {
         Exception e1 = assertThrows(IllegalArgumentException.class, () -> {
             new MultiplesCalculator(new HashSet<Long>(), calculationStrategy);
         });
@@ -73,8 +67,7 @@ class MultiplesCalculator_Tests {
         assertEquals(expectedMessage, e3.getMessage());
     }
 
-    @Test
-    void Passing_Zero_As_Operand_Throws_Exception() {
+    @Test void Passing_Zero_As_Operand_Throws_Exception() {
         Exception e1 = assertThrows(IllegalArgumentException.class, () -> {
             var baseOperands = new HashSet<Long>(Arrays.asList(0l));
             new MultiplesCalculator(baseOperands, calculationStrategy);
