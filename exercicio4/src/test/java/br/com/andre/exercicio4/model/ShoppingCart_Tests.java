@@ -12,7 +12,7 @@ class ShoppingCart_Tests {
 
     @BeforeEach
     void setUp() {
-        shoppingCart = new ShoppingCart(new User("André", "82.900-070"));
+        shoppingCart = new ShoppingCart();
         product1 = new Product("Capivara Robô Zumbi Gigante", new Money(1.99));
         product2 = new Product("Monstro Alienígena Mutante", new Money(10));
     }
@@ -20,15 +20,14 @@ class ShoppingCart_Tests {
     @Test
     void Add_Products() {
         shoppingCart.add(product1);
-        shoppingCart.add(product1);
+        shoppingCart.add(2, product1);
+        shoppingCart.add(11, product1);
         shoppingCart.add(product2);
-        shoppingCart.add(product2);
+        shoppingCart.add(3, product2);
 
-        assertEquals(4, shoppingCart.totalAmountOfProducts()); // Law of Demeter
-        assertEquals(2, shoppingCart.amountOf(product1));
-        assertEquals(2, shoppingCart.amountOf(product2));
-        assertEquals("Capivara Robô Zumbi Gigante", shoppingCart.productNameAt(0));
-        assertEquals(new Money(1.99), shoppingCart.productValueAt(0));
+        assertEquals(18, shoppingCart.totalAmountOfProducts()); // Law of Demeter
+        assertEquals(14, shoppingCart.amountOf(product1));
+        assertEquals(4, shoppingCart.amountOf(product2));
     }
 
     @Test

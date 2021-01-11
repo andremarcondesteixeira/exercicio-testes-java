@@ -1,58 +1,44 @@
 package br.com.andre.exercicio4.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class ShoppingCart {
-    private final User user;
-    private List<Product> products = new ArrayList<Product>();
+    private Map<Product, Integer> products = new HashMap<>();
 
     public void add(Product product) {
-        var copy = new Product(product.getName(), product.getValue());
-        products.add(copy);
+        add(1, product);
     }
 
     public void add(int amount, Product product) {
-        for (var i = 0; i < amount; i++)
-            add(product);
+        Product copy = new Product(product.getName(), product.getValue());
+        products.put(copy, amountOf(product) + amount);
     }
 
     public void removeOne(Product product) {
-        int index = products.indexOf(product);
-        if (index >= 0)
-            products.remove(index);
+        int amount = amountOf(product);
+        if (amount > 1)
+            products.put(product, amount - 1);
+        else
+            removeAll(product);
     }
 
     public void removeAll(Product product) {
-        findAll(product).forEach(p -> {
-            products.remove(p);
-        });
-    }
-
-    private List<Product> findAll(Product product) {
-        return products.stream().filter(p -> {
-            return p.hashCode() == product.hashCode();
-        }).collect(Collectors.toList());
+        products.remove(product);
     }
 
     public int amountOf(Product product) {
-        return findAll(product).size();
+        return Optional.ofNullable(products.get(product)).orElse(0);
     }
 
     public int totalAmountOfProducts() {
-        return products.size();
-    }
-
-    public String productNameAt(int index) {
-        return products.get(index).getName();
-    }
-
-    public Money productValueAt(int index) {
-        return products.get(index).getValue();
+        return products.values().stream().reduce((previous, sum) -> {
+            return previous + sum;
+        }).orElse(0);
     }
 
     public void clear() {
