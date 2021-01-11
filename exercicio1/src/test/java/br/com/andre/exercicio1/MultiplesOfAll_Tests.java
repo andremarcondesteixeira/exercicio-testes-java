@@ -19,20 +19,20 @@ import org.mockito.Captor;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
-public class MultiplesOfAll_Tests {
+class MultiplesOfAll_Tests {
     private Set<Integer> baseOperands;
     private @Spy MultiplesOfAll calculationStrategy;
     private @Captor ArgumentCaptor<Integer> numberCaptor;
     private @Captor ArgumentCaptor<Set<Integer>> operandsCaptor;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         baseOperands = new HashSet<Integer>(Arrays.asList(3, 5));
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void Get_Multiples() {
+    void Get_Multiples() {
         var expected = new int[] { 15, 30, 45, 60, 75, 90 };
         var limit = 100;
 
@@ -54,20 +54,20 @@ public class MultiplesOfAll_Tests {
     }
 
     @Test
-    public void Check_If_Number_Is_Multiple() {
+    void Check_If_Number_Is_Multiple() {
         boolean isMultiple = calculationStrategy.isMultiple(15, baseOperands);
         assertTrue(isMultiple);
     }
 
     @Test
-    public void Negative_Limit_Positive_Operands() {
+    void Negative_Limit_Positive_Operands() {
         var expected = new int[] { -15, -30, -45, -60, -75, -90 };
         List<Integer> multiples = calculationStrategy.calculateMultiples(-100, baseOperands);
         assertArrayEquals(expected, toArray(multiples));
     }
 
     @Test
-    public void Positive_Limit_Negative_Operands() {
+    void Positive_Limit_Negative_Operands() {
         baseOperands = new HashSet<Integer>(Arrays.asList(-3, -5));
         var expected = new int[] { 15, 30, 45, 60, 75, 90 };
 
@@ -76,7 +76,7 @@ public class MultiplesOfAll_Tests {
     }
 
     @Test
-    public void Negative_Limit_Negative_Operands() {
+    void Negative_Limit_Negative_Operands() {
         baseOperands = new HashSet<Integer>(Arrays.asList(-3, -5));
         var expected = new int[] { -15, -30, -45, -60, -75, -90 };
 

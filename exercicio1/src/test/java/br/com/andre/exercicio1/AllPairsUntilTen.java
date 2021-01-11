@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class AllPairsUntilTen implements MultiplesCalculationStrategy {
+class AllPairsUntilTen implements MultiplesCalculationStrategy {
     @Override
     public List<Integer> calculateMultiples(int until, Set<Integer> baseOperands) {
         var result = new ArrayList<Integer>();
