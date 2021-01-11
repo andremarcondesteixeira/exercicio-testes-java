@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.util.Arrays;
@@ -36,6 +37,12 @@ class MultiplesCalculator_Tests {
     @Test
     void Calling_getBaseOperands_Returns_An_Array() {
         assertArrayEquals(new long[] { 2 }, multiplesCalculator.getBaseOperands());
+    }
+
+    @Test
+    void isMultiple_Checks_If_Number_Is_Multiple_Of_Operands() {
+        assertTrue(multiplesCalculator.isMultiple(50));
+        verify(calculationStrategy, times(1)).isMultiple(50, baseOperands);
     }
 
     @Test
