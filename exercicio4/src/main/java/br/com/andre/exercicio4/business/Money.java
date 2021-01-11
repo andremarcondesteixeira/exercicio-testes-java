@@ -8,15 +8,25 @@ import lombok.Data;
 public final class Money {
     private final double value;
 
-    public Money add(double amount) {
-        return new Money(value + amount);
+    public Money add(double value) {
+        return add(new Money(value));
     }
 
-    public Money subtract(double amount) {
-        return new Money(value - amount);
+    public Money add(Money money) {
+		return new Money(value + money.getValue());
+	}
+
+    public Money subtract(double value) {
+        return subtract(new Money(value));
     }
 
-	public Money times(double factor) {
+	private Money subtract(Money money) {
+        return new Money(value - money.getValue());
+    }
+
+    public Money times(double factor) {
 		return new Money(value * factor);
 	}
+
+
 }

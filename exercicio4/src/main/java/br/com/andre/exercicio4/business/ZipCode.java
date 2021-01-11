@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class ZipCode {
-    private String zipCode;
+    private final String zipCode;
 }
