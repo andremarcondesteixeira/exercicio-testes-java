@@ -48,4 +48,14 @@ public class ShoppingCart {
     public void clear() {
         products.clear();
     }
+
+	public Money purchasePrice() {
+        var price = new Money(0);
+        for (Product product : products.keySet()) {
+            int amount = products.get(product);
+            Money total = product.getValue().times(amount);
+            price = price.add(total.getValue());
+        }
+        return price;
+	}
 }

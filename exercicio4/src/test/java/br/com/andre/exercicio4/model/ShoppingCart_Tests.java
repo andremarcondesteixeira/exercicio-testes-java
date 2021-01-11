@@ -13,7 +13,7 @@ class ShoppingCart_Tests {
     @BeforeEach void setUp() {
         shoppingCart = new ShoppingCart();
         product1 = new Product("Capivara Robô Zumbi Gigante", new Money(1.99));
-        product2 = new Product("Monstro Alienígena Mutante", new Money(10));
+        product2 = new Product("Catioríneo Alienígena Mutante", new Money(10));
     }
 
     @Test void Add_Products() {
@@ -88,6 +88,7 @@ class ShoppingCart_Tests {
     }
 
     @Test void Purchase_Price() {
-
+        shoppingCart.add(2, product2);
+        assertEquals(new Money(20), shoppingCart.purchasePrice());
     }
 }
