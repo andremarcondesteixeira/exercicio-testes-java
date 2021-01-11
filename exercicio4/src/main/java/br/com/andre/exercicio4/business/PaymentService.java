@@ -6,9 +6,19 @@ import lombok.AllArgsConstructor;
 public class PaymentService {
     private FreightService freightService;
 
-	public Money purchasePrice(ShoppingCart shoppingCart) {
+    public Money purchasePrice(ShoppingCart shoppingCart) {
+        Money total = shoppingCart.totalProductsPrice();
+        if (!freightIsFree(total))
+            total = total.add(getFreightPrice(shoppingCart));
+        return total;
+    }
+
+    private boolean freightIsFree(Money productsPrice) {
+        return productsPrice.getValue() > 100;
+    }
+
+    private Money getFreightPrice(ShoppingCart shoppingCart) {
         ZipCode zipCode = shoppingCart.getUserZipCode();
-        Money freightPrice = freightService.calculateFreightPrice(zipCode);
-		return shoppingCart.totalProductsPrice().add(freightPrice);
-	}
+        return freightService.calculateFreightPrice(zipCode);
+    }
 }

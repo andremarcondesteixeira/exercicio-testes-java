@@ -7,7 +7,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public final class ShoppingCart {
+public class ShoppingCart {
     private Map<Product, Integer> products = new HashMap<>();
     private final User user;
 

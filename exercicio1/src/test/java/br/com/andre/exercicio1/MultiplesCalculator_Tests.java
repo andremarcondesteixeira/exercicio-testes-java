@@ -38,7 +38,7 @@ class MultiplesCalculator_Tests {
 
     public @Test void isMultiple_Checks_If_Number_Is_Multiple_Of_Operands() {
         assertTrue(multiplesCalculator.isMultiple(50));
-        verify(calculationStrategy, times(1)).isMultiple(50, baseOperands);
+        verify(calculationStrategy).isMultiple(50, baseOperands);
     }
 
     public @Test void When_CalculationStrategy_Is_Null_Throws_Exception() {

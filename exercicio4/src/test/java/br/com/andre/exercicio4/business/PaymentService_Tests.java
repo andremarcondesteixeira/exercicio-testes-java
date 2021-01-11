@@ -1,6 +1,7 @@
 package br.com.andre.exercicio4.business;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,19 +12,31 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 class PaymentService_Tests {
+    private @Mock ShoppingCart shoppingCart;
     private @Mock FreightService freightService;
-    private @Captor ArgumentCaptor<ZipCode> captor;
+    private @Captor ArgumentCaptor<ZipCode> zipCodeCaptor;
+    private PaymentService paymentService;
 
     public @BeforeEach void setUp() {
         MockitoAnnotations.openMocks(this);
-        when(freightService.calculateFreightPrice(captor.capture())).thenReturn(new Money(25));
+        when(freightService.calculateFreightPrice(zipCodeCaptor.capture())).thenReturn(new Money(25));
+        paymentService = new PaymentService(freightService);
     }
 
-    public @Test void Purchase_Price() {
-        var product = new Product("Monstro Marinho Assassino", new Money(399.9));
-        var shoppingCart = new ShoppingCart(new User("André", new ZipCode("82.900-070")));
-        shoppingCart.add(10, product);
-        var service = new PaymentService(freightService);
-        assertEquals(new Money(399.9 * 2 + 25), service.purchasePrice(shoppingCart));
+    public @Test void Purchase_Without_Freight_Cost() {
+        when(shoppingCart.totalProductsPrice()).thenReturn(new Money(500));
+        var expected = new Money(500);
+        var actual = paymentService.purchasePrice(shoppingCart);
+        assertEquals(expected, actual);
+        verify(shoppingCart).totalProductsPrice();
+    }
+
+    public @Test void Purchase_With_Freight_Cost() {
+        when(shoppingCart.totalProductsPrice()).thenReturn(new Money(50));
+        var expected = new Money(75);
+        var actual = paymentService.purchasePrice(shoppingCart);
+        assertEquals(expected, actual);
+        verify(shoppingCart).totalProductsPrice();
+        verify(freightService).calculateFreightPrice(zipCodeCaptor.capture());
     }
 }
