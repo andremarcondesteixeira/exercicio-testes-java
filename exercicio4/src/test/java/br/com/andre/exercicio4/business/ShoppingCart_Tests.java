@@ -11,7 +11,7 @@ class ShoppingCart_Tests {
     private Product product2;
 
     public @BeforeEach void setUp() {
-        shoppingCart = new ShoppingCart();
+        shoppingCart = new ShoppingCart(new User("André", new ZipCode("82.900-070")));
         product1 = new Product("Capivara Robô Zumbi Gigante", new Money(1.99));
         product2 = new Product("Catioríneo Alienígena Mutante", new Money(10));
     }

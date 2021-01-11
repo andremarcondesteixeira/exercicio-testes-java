@@ -27,6 +27,4 @@ public final class Money {
     public Money times(double factor) {
 		return new Money(value * factor);
 	}
-
-
 }

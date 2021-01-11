@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-@NoArgsConstructor
+@RequiredArgsConstructor
 public final class ShoppingCart {
     private Map<Product, Integer> products = new HashMap<>();
+    private final User user;
 
-    public void add(Product product) {
+	public void add(Product product) {
         add(1, product);
     }
 
@@ -57,5 +58,9 @@ public final class ShoppingCart {
             price = price.add(total.getValue());
         }
         return price;
+	}
+
+	public ZipCode getUserZipCode() {
+		return user.getZipCode();
 	}
 }

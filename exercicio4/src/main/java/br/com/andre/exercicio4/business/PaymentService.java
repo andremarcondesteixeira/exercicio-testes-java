@@ -7,6 +7,8 @@ public class PaymentService {
     private FreightService freightService;
 
 	public Money purchasePrice(ShoppingCart shoppingCart) {
-		return null;
+        ZipCode zipCode = shoppingCart.getUserZipCode();
+        Money freightPrice = freightService.calculateFreightPrice(zipCode);
+		return shoppingCart.totalProductsPrice().add(freightPrice);
 	}
 }
