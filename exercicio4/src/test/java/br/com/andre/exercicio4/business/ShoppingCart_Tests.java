@@ -1,4 +1,4 @@
-package br.com.andre.exercicio4.model;
+package br.com.andre.exercicio4.business;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -87,8 +87,8 @@ class ShoppingCart_Tests {
         assertEquals(0, shoppingCart.totalAmountOfProducts());
     }
 
-    @Test void Purchase_Price() {
+    @Test void Total_Products_Price() {
         shoppingCart.add(2, product2);
-        assertEquals(new Money(20), shoppingCart.purchasePrice());
+        assertEquals(new Money(20), shoppingCart.totalProductsPrice());
     }
 }

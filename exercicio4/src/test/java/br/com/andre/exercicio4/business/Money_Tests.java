@@ -1,4 +1,4 @@
-package br.com.andre.exercicio4.model;
+package br.com.andre.exercicio4.business;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -12,6 +12,10 @@ class Money_Tests {
 
     @Test void Subtract() {
         assertEquals(30, new Money(100).subtract(70).getValue());
+    }
+
+    @Test void Times() {
+        assertEquals(20, new Money(10).times(2).getValue());
     }
 
     @Test void Money_Is_Comparable() {

@@ -1,4 +1,4 @@
-package br.com.andre.exercicio4.model;
+package br.com.andre.exercicio4.business;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import java.util.Optional;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class ShoppingCart {
+public final class ShoppingCart {
     private Map<Product, Integer> products = new HashMap<>();
 
     public void add(Product product) {
@@ -49,7 +49,7 @@ public class ShoppingCart {
         products.clear();
     }
 
-	public Money purchasePrice() {
+	public Money totalProductsPrice() {
         var price = new Money(0);
         for (Product product : products.keySet()) {
             int amount = products.get(product);

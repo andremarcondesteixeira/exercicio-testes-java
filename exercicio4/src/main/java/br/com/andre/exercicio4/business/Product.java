@@ -1,4 +1,4 @@
-package br.com.andre.exercicio4.model;
+package br.com.andre.exercicio4.business;
 
 import lombok.Data;
 
