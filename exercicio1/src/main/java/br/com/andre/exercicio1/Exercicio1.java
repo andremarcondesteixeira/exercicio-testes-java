@@ -2,6 +2,9 @@ package br.com.andre.exercicio1;
 
 public final class Exercicio1 {
 	public static void main(String[] args) {
+		// eu só quis criar uma sintaxe bonitinha aqui, mas essa abordagem é
+		// uma extrama violação da Lei de Demeter
+		// se mostrar isso para algum novato explique a situação
 		long soma1 = new Multiples().ofAny(new long[] { 3, 5 }).until(999).sum();
 		System.out.println("A soma de todos os múltiplos de 3 ou 5 abaixo de 1000 é " + soma1);
 
