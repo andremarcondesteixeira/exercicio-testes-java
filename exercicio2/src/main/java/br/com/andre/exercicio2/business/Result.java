@@ -6,8 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
-public class Result {
-    private final @Getter long number;
-    private final @Getter boolean isHappy;
-    private final @Getter List<Step> steps;
+@Getter
+public final class Result {
+    private final long number;
+    private final boolean isHappy;
+    private final List<Step> steps;
 }

@@ -18,15 +18,13 @@ public class ConsolePresentation implements Presentation {
         System.out.println("Bem vindo ao verificador de números felizes!!! :D");
     }
 
-    @Override
-    public long getInput() throws IOException, NumberFormatException {
+    public @Override long getInput() throws IOException, NumberFormatException {
         System.out.println("\nDigite um número:");
         input = reader.readLine();
         return Long.parseLong(input);
     }
 
-    @Override
-    public void output(Result result) {
+    public @Override void output(Result result) {
         showBriefing(result);
         result.getSteps().forEach(step -> {
             String calculation = getCalculation(step);
@@ -53,13 +51,11 @@ public class ConsolePresentation implements Presentation {
         }).collect(Collectors.toList());
     }
 
-    @Override
-    public void output(String string) {
+    public @Override void output(String string) {
         System.out.println(string);
     }
 
-    @Override
-    public void output(Exception e) {
+    public @Override void output(Exception e) {
         e.printStackTrace();
     }
 }

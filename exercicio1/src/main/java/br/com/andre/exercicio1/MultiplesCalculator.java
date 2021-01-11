@@ -35,17 +35,16 @@ public class MultiplesCalculator implements OfRelationshipCalculator {
             throw new IllegalArgumentException("No calculation strategy provided");
     }
 
-    public OfRelationshipCalculationResult until(long limit) {
+    public @Override OfRelationshipCalculationResult until(long limit) {
         multiples = calculationStrategy.calculateMultiples(limit, baseOperands);
         return new MultiplesCalculationResult(multiples);
     }
 
-    public long[] getBaseOperands() {
+    public @Override long[] getBaseOperands() {
         return baseOperands.stream().mapToLong(x -> x).toArray();
     }
 
-    @Override
-    public boolean isMultiple(long value) {
+    public @Override boolean isMultiple(long value) {
         return calculationStrategy.isMultiple(value, baseOperands);
     }
 }

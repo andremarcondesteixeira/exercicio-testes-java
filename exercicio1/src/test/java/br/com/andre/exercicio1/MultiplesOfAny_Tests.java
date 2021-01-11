@@ -25,12 +25,12 @@ class MultiplesOfAny_Tests {
     private @Captor ArgumentCaptor<Long> numberCaptor;
     private @Captor ArgumentCaptor<Set<Long>> operandsCaptor;
 
-    @BeforeEach void setUp() {
+    public @BeforeEach void setUp() {
         baseOperands = new HashSet<Long>(Arrays.asList(3l, 5l));
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test void Get_Multiples() {
+    public @Test void Get_Multiples() {
         var expected = new long[] { 3, 5, 6, 9, 10, 12, 15, 18, 20 };
         var limit = 20;
         long[] oneTo100 = LongStream.rangeClosed(1, limit).toArray();
@@ -51,18 +51,18 @@ class MultiplesOfAny_Tests {
         return l.stream().mapToLong(x -> x).toArray();
     }
 
-    @Test void Check_If_Number_Is_Multiple() {
+    public @Test void Check_If_Number_Is_Multiple() {
         boolean isMultiple = calculationStrategy.isMultiple(15, baseOperands);
         assertTrue(isMultiple);
     }
 
-    @Test void Negative_Limit_Positive_Operands() {
+    public @Test void Negative_Limit_Positive_Operands() {
         var expected = new long[] { -3, -5, -6, -9, -10, -12, -15, -18, -20 };
         List<Long> multiples = calculationStrategy.calculateMultiples(-20, baseOperands);
         assertArrayEquals(expected, toArray(multiples));
     }
 
-    @Test void Positive_Limit_Negative_Operands() {
+    public @Test void Positive_Limit_Negative_Operands() {
         baseOperands = new HashSet<Long>(Arrays.asList(-3l, -5l));
         var expected = new long[] { 3, 5, 6, 9, 10, 12, 15, 18, 20 };
 
@@ -70,7 +70,7 @@ class MultiplesOfAny_Tests {
         assertArrayEquals(expected, toArray(multiples));
     }
 
-    @Test void Negative_Limit_Negative_Operands() {
+    public @Test void Negative_Limit_Negative_Operands() {
         baseOperands = new HashSet<Long>(Arrays.asList(-3l, -5l));
         var expected = new long[] { -3, -5, -6, -9, -10, -12, -15, -18, -20 };
 

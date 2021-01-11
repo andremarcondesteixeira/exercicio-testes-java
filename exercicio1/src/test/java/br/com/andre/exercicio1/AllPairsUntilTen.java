@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 class AllPairsUntilTen implements MultiplesCalculationStrategy {
-    @Override
-    public List<Long> calculateMultiples(long until, Set<Long> baseOperands) {
+    public @Override List<Long> calculateMultiples(long until, Set<Long> baseOperands) {
         var result = new ArrayList<Long>();
         result.add(2l);
         result.add(4l);

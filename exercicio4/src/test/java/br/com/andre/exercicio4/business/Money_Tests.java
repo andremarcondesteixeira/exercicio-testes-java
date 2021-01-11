@@ -6,19 +6,19 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
 
 class Money_Tests {
-    @Test void Sum() {
+    public @Test void Sum() {
         assertEquals(10, new Money(5).add(5).getValue());
     }
 
-    @Test void Subtract() {
+    public @Test void Subtract() {
         assertEquals(30, new Money(100).subtract(70).getValue());
     }
 
-    @Test void Times() {
+    public @Test void Times() {
         assertEquals(20, new Money(10).times(2).getValue());
     }
 
-    @Test void Money_Is_Comparable() {
+    public @Test void Money_Is_Comparable() {
         assertEquals(new Money(100), new Money(100));
         assertNotEquals(new Money(99), new Money(100));
     }

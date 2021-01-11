@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class MultiplesOfAll implements MultiplesCalculationStrategy {
-    @Override
-    public boolean isMultiple(long n, Set<Long> baseOperands) {
+    public @Override boolean isMultiple(long n, Set<Long> baseOperands) {
         var result = true;
         for (long operand : baseOperands) {
             result &= n % operand == 0;

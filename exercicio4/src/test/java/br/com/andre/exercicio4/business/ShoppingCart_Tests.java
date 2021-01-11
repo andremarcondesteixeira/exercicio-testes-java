@@ -10,13 +10,13 @@ class ShoppingCart_Tests {
     private Product product1;
     private Product product2;
 
-    @BeforeEach void setUp() {
+    public @BeforeEach void setUp() {
         shoppingCart = new ShoppingCart();
         product1 = new Product("Capivara Robô Zumbi Gigante", new Money(1.99));
         product2 = new Product("Catioríneo Alienígena Mutante", new Money(10));
     }
 
-    @Test void Add_Products() {
+    public @Test void Add_Products() {
         shoppingCart.add(product1);
         shoppingCart.add(2, product1);
         shoppingCart.add(11, product1);
@@ -28,7 +28,7 @@ class ShoppingCart_Tests {
         assertEquals(4, shoppingCart.amountOf(product2));
     }
 
-    @Test void Remove_Products() {
+    public @Test void Remove_Products() {
         shoppingCart.add(3, product1);
         shoppingCart.add(5, product2);
         assertEquals(3, shoppingCart.amountOf(product1));
@@ -48,7 +48,7 @@ class ShoppingCart_Tests {
         assertEquals(0, shoppingCart.totalAmountOfProducts());
     }
 
-    @Test void Change_Amount_Of_Product() {
+    public @Test void Change_Amount_Of_Product() {
         shoppingCart.add(10, product1);
         shoppingCart.add(20, product2);
         assertEquals(10, shoppingCart.amountOf(product1));
@@ -68,7 +68,7 @@ class ShoppingCart_Tests {
         assertEquals(16, shoppingCart.totalAmountOfProducts());
     }
 
-    @Test void changeAmount_Can_Add_Product() {
+    public @Test void changeAmount_Can_Add_Product() {
         shoppingCart.changeAmount(2, product1);
         shoppingCart.changeAmount(5, product2);
         assertEquals(2, shoppingCart.amountOf(product1));
@@ -76,7 +76,7 @@ class ShoppingCart_Tests {
         assertEquals(7, shoppingCart.totalAmountOfProducts());
     }
 
-    @Test void Clear_Shopping_Cart() {
+    public @Test void Clear_Shopping_Cart() {
         shoppingCart.add(2, product1);
         shoppingCart.add(2, product2);
         assertEquals(2, shoppingCart.amountOf(product1));
@@ -87,7 +87,7 @@ class ShoppingCart_Tests {
         assertEquals(0, shoppingCart.totalAmountOfProducts());
     }
 
-    @Test void Total_Products_Price() {
+    public @Test void Total_Products_Price() {
         shoppingCart.add(2, product2);
         assertEquals(new Money(20), shoppingCart.totalProductsPrice());
     }
