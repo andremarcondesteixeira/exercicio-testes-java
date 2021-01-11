@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class HappyNumberVerifier {
 	private long number;
 	private Deque<Long> digits;

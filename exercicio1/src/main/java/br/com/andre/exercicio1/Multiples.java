@@ -3,8 +3,11 @@ package br.com.andre.exercicio1;
 import java.util.HashSet;
 import java.util.Set;
 
+import lombok.NoArgsConstructor;
+
 // Abstract Factory design pattern
 // 100% SOLID
+@NoArgsConstructor
 public final class Multiples implements OfRelationshipBetweenNumbers {
     public OfRelationshipCalculator of(long operand) {
         var baseOperands = new HashSet<Long>();

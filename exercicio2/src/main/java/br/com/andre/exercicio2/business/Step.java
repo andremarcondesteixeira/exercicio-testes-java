@@ -2,15 +2,12 @@ package br.com.andre.exercicio2.business;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class Step {
-    private List<Long> digits;
-    private long result;
-
-    public Step(List<Long> digits, long result) {
-        this.digits = digits;
-        this.result = result;
-    }
+    private final List<Long> digits;
+    private final long result;
 }
