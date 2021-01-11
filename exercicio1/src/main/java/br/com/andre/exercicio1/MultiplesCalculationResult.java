@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 public class MultiplesCalculationResult implements OfRelationshipCalculationResult {
     private List<Long> multiples;
 
-	@Override
+    @Override
     public long[] get() {
         return multiples.stream().mapToLong(x -> x).toArray();
     }

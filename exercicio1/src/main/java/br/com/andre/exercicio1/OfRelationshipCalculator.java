@@ -7,5 +7,5 @@ public interface OfRelationshipCalculator {
 
     MultiplesCalculationStrategy getCalculationStrategy();
 
-	boolean isMultiple(long value);
+    boolean isMultiple(long value);
 }

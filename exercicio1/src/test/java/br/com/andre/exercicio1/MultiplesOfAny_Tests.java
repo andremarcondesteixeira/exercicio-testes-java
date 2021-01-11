@@ -40,7 +40,7 @@ class MultiplesOfAny_Tests {
         assertArrayEquals(expected, result);
         verify(calculationStrategy, times(limit)).isMultiple(numberCaptor.capture(), operandsCaptor.capture());
         assertArrayEquals(oneTo100, toArray(numberCaptor.getAllValues()));
-        for(Set<Long> set : operandsCaptor.getAllValues()) {
+        for (Set<Long> set : operandsCaptor.getAllValues()) {
             assertEquals(2, set.size());
             assertTrue(set.contains(3l));
             assertTrue(set.contains(5l));
